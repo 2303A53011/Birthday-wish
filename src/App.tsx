@@ -113,6 +113,12 @@ function App() {
 
     // Sample data (to be replaced with real content)
     const chapters: Chapter[] = [
+         {
+            id: 0,
+            title: "✨ Sweet & Nostalgic",
+            description: "Little moments, big memories 🌸✨",
+            imageUrl: "/images/chapters/childhood-1.jpg"
+        },
         {
             id: 1,
             title: "Cherished Moments",
@@ -196,10 +202,29 @@ function App() {
         },
         {
             id: 3,
+            name: "Khalami",
+            photo: "/images/people/friend.jpg",
+            audioUrl: "/voices/khalami.mp3"
+        },
+        {
+            id: 5,
+            name: "Afiya",
+            photo: "/images/people/friend.jpg",
+            audioUrl: "/voices/afiya.mp3"
+        },
+        {
+            id: 6,
+            name: "Ayesha",
+            photo: "/images/people/friend.jpg",
+            audioUrl: "/voices/ayesha.mp3"
+        },
+        {
+            id: 7,
             name: "Best Friend",
             photo: "/images/people/friend.jpg",
             audioUrl: "/voices/friend.mp3"
         }
+        
     ];
 
     const handleVoicePlay = (messageId: number) => {
