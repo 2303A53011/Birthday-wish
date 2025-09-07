@@ -237,13 +237,14 @@ function App() {
   };
 
   // Auto-play Fazal's message in climax section
+  // Auto-play Fazal's message in climax section
   useEffect(() => {
-    if (currentSection === 3) { // Climax section
+    if (currentSection === 3) {
       const fazalAudio = new Audio('/voices/fazal.mp3');
-      fazalAudio.play().catch(() => {
-        console.log('Fazal message audio not found');
+      fazalAudio.play().catch(err => {
+        console.log('Autoplay blocked, waiting for gesture', err);
       });
-      
+
       return () => {
         fazalAudio.pause();
       };
@@ -261,6 +262,24 @@ function App() {
       });
     };
   }, []);
+
+  // Unlock audio on first user interaction (fix for mobile autoplay)
+  useEffect(() => {
+    const unlockAudio = () => {
+      const audio = new Audio();
+      audio.muted = true;
+      audio.play().then(() => {
+        audio.pause();
+        audio.muted = false;
+        window.removeEventListener('touchstart', unlockAudio);
+        window.removeEventListener('click', unlockAudio);
+      }).catch(() => {});
+    };
+
+    window.addEventListener('touchstart', unlockAudio, { once: true });
+    window.addEventListener('click', unlockAudio, { once: true });
+  }, []);
+
     
   const sections = [
     "landing",
